@@ -53,7 +53,7 @@ static NSInteger INITIAL_BUFFER_SIZE = 1024;
 {
 	self = [super init];
 	if ( self != nil ) {
-        int p1 = n;  // init from ANTLRStringStream val
+        //int p1 = n;  // init from ANTLRStringStream val
         is = nil;
         rbSize = READ_BUFFER_SIZE;
         size = INITIAL_BUFFER_SIZE;
@@ -65,7 +65,7 @@ static NSInteger INITIAL_BUFFER_SIZE = 1024;
 {
 	self = [super init];
 	if ( self != nil ) {
-        int p1 = n;  // init from ANTLRStringStream val
+        //int p1 = n;  // init from ANTLRStringStream val
         is = r;
         rbSize = aSize;
         size = aReadChunkSize;
@@ -93,15 +93,15 @@ static NSInteger INITIAL_BUFFER_SIZE = 1024;
     }
 #pragma mark fix these NSLog calls
     @try {
-        int numRead=0;
+        NSInteger numRead=0;
         numRead = [is read:buf maxLength:aReadChunkSize];
         retData = [NSMutableData dataWithCapacity:numRead];
         [retData appendBytes:(const void *)buf length:numRead];
-        NSLog( @"read %d chars; p was %d is now %d", n, p1, (p1+numRead) );
+        NSLog( @"read %ld chars; p was %ld is now %ld", (long)n, (long)p1, (long)(p1+numRead) );
         p1 += numRead;
         n = p1;
         data = [[NSString alloc] initWithData:retData encoding:NSASCIIStringEncoding];
-        NSLog( @"n=%d\n", n );
+        NSLog( @"n=%ld\n", (long)n );
     }
     @finally {
         [self close];

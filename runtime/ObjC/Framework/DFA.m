@@ -50,24 +50,24 @@ NSInteger debug = 0;
 - (NSInteger) predict:(id<IntStream>)input
 {
     if ( debug > 2 ) {
-        NSLog(@"Enter DFA.predict for decision %d", decisionNumber);
+        NSLog(@"Enter DFA.predict for decision %ld", (long)decisionNumber);
     }
 	int aMark = [input mark];
-	int s = 0;
+	NSInteger s = 0;
 	@try {
 		while (YES) {
 			if ( debug > 2 )
-                NSLog(@"DFA %d state %d LA(1)='%c'(%x)", decisionNumber, s, (unichar)[input LA:1], [input LA:1]);
+                NSLog(@"DFA %ld state %ld LA(1)='%c'(%lx)", (long)decisionNumber, (long)s, (unichar)[input LA:1], (long)[input LA:1]);
 			NSInteger specialState = special[s];
 			if (specialState >= 0) {
 				// this state is special in that it has some code associated with it. we cannot do this in a pure DFA so
 				// we signal the caller accordingly.
 				if ( debug > 2 ) {
-                    NSLog(@"DFA %d state %d is special state %d", decisionNumber, s, specialState);
+                    NSLog(@"DFA %ld state %ld is special state %ld", (long)decisionNumber, (long)s, (long)specialState);
                 }
 				s = [self specialStateTransition:specialState Stream:input];
                 if ( debug > 2 ) {
-                    NSLog(@"DFA %d returns from special state %d to %d", decisionNumber, specialState, s);
+                    NSLog(@"DFA %ld returns from special state %ld to %ld", (long)decisionNumber, (long)specialState, (long)s);
                 }
                 if (s == -1 ) {
                     [self noViableAlt:s Stream:input];
@@ -77,7 +77,7 @@ NSInteger debug = 0;
 				continue;
 			}
 			if (accept[s] >= 1) {  // if this is an accepting state return the prediction
-				if ( debug > 2 ) NSLog(@"accept; predict %d from state %d", accept[s], s);
+				if ( debug > 2 ) NSLog(@"accept; predict %ld from state %ld", (long)accept[s], (long)s);
 				return accept[s];
 			}
 			// based on the lookahead lookup the next transition, consume and do transition
@@ -116,17 +116,17 @@ NSInteger debug = 0;
 				continue;
 			}
 			if ( c == TokenTypeEOF && eof[s] >= 0) {  // we are at EOF and may even accept the input.
-				if ( debug > 2 ) NSLog(@"accept via EOF; predict %d from %d", accept[eof[s]], eof[s]);
+				if ( debug > 2 ) NSLog(@"accept via EOF; predict %ld from %ld", (long)accept[eof[s]], (long)eof[s]);
 				return accept[eof[s]];
 			}
 			if ( debug > 2 ) {
                 NSLog(@"no viable alt!\n");
-                NSLog(@"min[%d] = %d\n", s, min[s]);
-                NSLog(@"max[%d] = %d\n", s, min[s]);
-                NSLog(@"eot[%d] = %d\n", s, min[s]);
-                NSLog(@"eof[%d] = %d\n", s, min[s]);
+                NSLog(@"min[%ld] = %ld\n", (long)s, (long)min[s]);
+                NSLog(@"max[%ld] = %ld\n", (long)s, (long)min[s]);
+                NSLog(@"eot[%ld] = %ld\n", (long)s, (long)min[s]);
+                NSLog(@"eof[%ld] = %ld\n", (long)s, (long)min[s]);
                 for (NSInteger p = 0; p < self.len; p++) {
-                    NSLog(@"%d ", transition[s][p]);
+                    NSLog(@"%ld ", (long)transition[s][p]);
                 }
                 NSLog(@"\n");
             }

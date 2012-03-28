@@ -229,7 +229,7 @@ extern NSInteger debug;
 // Note: markers are 1-based!
 - (NSInteger) mark 
 {
-    if (debug > 1) NSLog(@"mark entry -- markers=%x, markDepth=%d\n", (int)markers, markDepth);
+    if (debug > 1) NSLog(@"mark entry -- markers=%lx, markDepth=%ld\n", (long)markers, (long)markDepth);
     if ( markers == nil ) {
         markers = [PtrBuffer newPtrBufferWithLen:100];
 		[markers addObject:[NSNull null]]; // ANTLR generates code that assumes markers to be 1-based,
@@ -245,38 +245,38 @@ extern NSInteger debug;
         if ( markDepth == 1 )
             State = charState;
 		[markers insertObject:State atIndex:markDepth];
-        if (debug > 1) NSLog(@"mark save State %x at %d, index=%d, line=%d, charPositionInLine=%d\n", (NSUInteger)State, markDepth, State.index, State.line, State.charPositionInLine);
+        if (debug > 1) NSLog(@"mark save State %lx at %ld, index=%ld, line=%ld, charPositionInLine=%ld\n", (unsigned long)State, (long)markDepth, (long)State.index, (long)State.line, (long)State.charPositionInLine);
 	}
 	else {
-        if (debug > 1) NSLog(@"mark retrieve markers=%x markDepth=%d\n", (NSUInteger)markers, markDepth);
+        if (debug > 1) NSLog(@"mark retrieve markers=%lx markDepth=%ld\n", (unsigned long)markers, (long)markDepth);
         State = [markers objectAtIndex:markDepth];
         [State retain];
         State = (CharStreamState *)[markers objectAtIndex:markDepth];
-        if (debug > 1) NSLog(@"mark retrieve charState %x from %d, index=%d, line=%d, charPositionInLine=%d\n", (NSUInteger)State, markDepth, State.index, State.line, State.charPositionInLine);
+        if (debug > 1) NSLog(@"mark retrieve charState %lx from %ld, index=%ld, line=%ld, charPositionInLine=%ld\n", (unsigned long)State, (long)markDepth, (long)State.index, (long)State.line, (long)State.charPositionInLine);
 	}
     State.index = index;
 	State.line = line;
 	State.charPositionInLine = charPositionInLine;
 	lastMarker = markDepth;
-    if (debug > 1) NSLog(@"mark exit -- markers=%x, charState=%x, index=%d, line=%d, charPositionInLine=%d\n", (NSUInteger)markers, (NSUInteger)State, State.index, State.line, State.charPositionInLine);
+    if (debug > 1) NSLog(@"mark exit -- markers=%lx, charState=%lx, index=%ld, line=%ld, charPositionInLine=%ld\n", (unsigned long)markers, (unsigned long)State, (long)State.index, (long)State.line, (long)State.charPositionInLine);
 	return markDepth;
 }
 
 - (void) rewind:(NSInteger) marker 
 {
     CharStreamState *State;
-    if (debug > 1) NSLog(@"rewind entry -- markers=%x marker=%d\n", (NSUInteger)markers, marker);
+    if (debug > 1) NSLog(@"rewind entry -- markers=%lx marker=%ld\n", (unsigned long)markers, (long)marker);
     if ( marker == 1 )
         State = charState;
     else
         State = (CharStreamState *)[markers objectAtIndex:marker];
-    if (debug > 1) NSLog(@"rewind entry -- marker=%d charState=%x, index=%d, line=%d, charPositionInLine=%d\n", marker, (NSUInteger)charState, charState.index, charState.line, charState.charPositionInLine);
+    if (debug > 1) NSLog(@"rewind entry -- marker=%ld charState=%lx, index=%ld, line=%ld, charPositionInLine=%ld\n", (long)marker, (unsigned long)charState, (long)charState.index, (long)charState.line, (long)charState.charPositionInLine);
 	// restore stream charState
 	[self seek:State.index];
 	line = State.line;
 	charPositionInLine = charState.charPositionInLine;
 	[self release:marker];
-    if (debug > 1) NSLog(@"rewind exit -- marker=%d charState=%x, index=%d, line=%d, charPositionInLine=%d\n", marker, (NSUInteger)charState, charState.index, charState.line, charState.charPositionInLine);
+    if (debug > 1) NSLog(@"rewind exit -- marker=%ld charState=%lx, index=%ld, line=%ld, charPositionInLine=%ld\n", (long)marker, (unsigned long)charState, (long)charState.index, (long)charState.line, (long)charState.charPositionInLine);
 }
 
 - (void) rewind
@@ -292,7 +292,7 @@ extern NSInteger debug;
 	// unwind any other markers made after marker and release marker
 	markDepth = marker;
 	markDepth--;
-    if (debug > 1) NSLog(@"release:marker= %d, markDepth = %d\n", marker, markDepth);
+    if (debug > 1) NSLog(@"release:marker= %ld, markDepth = %ld\n", (long)marker, (long)markDepth);
 }
 
 // when seeking forward we must handle character position and line numbers.
@@ -300,17 +300,17 @@ extern NSInteger debug;
 // so we just take it from there.
 - (void) seek:(NSInteger) anIndex 
 {
-    if (debug > 1) NSLog(@"seek entry -- seekIndex=%d index=%d\n", anIndex, index);
+    if (debug > 1) NSLog(@"seek entry -- seekIndex=%ld index=%ld\n", (long)anIndex, (long)index);
 	if ( anIndex <= index ) {
 		index = anIndex; // just jump; don't update stream charState (line, ...)
-        if (debug > 1) NSLog(@"seek exit return -- index=%d index=%d\n", anIndex, index);
+        if (debug > 1) NSLog(@"seek exit return -- index=%ld index=%ld\n", (long)anIndex, (long)index);
 		return;
 	}
 	// seek forward, consume until index hits anIndex
 	while ( index < anIndex ) {
 		[self consume];
 	}
-    if (debug > 1) NSLog(@"seek exit end -- index=%d index=%d\n", anIndex, index);
+    if (debug > 1) NSLog(@"seek exit end -- index=%ld index=%ld\n", (long)anIndex, (long)index);
 }
 
 // get a substring from our raw data.

@@ -185,7 +185,7 @@ extern NSInteger debug;
 {
     // how many more elements we need?
     NSInteger n = (i - [tokens count]) + 1;
-    if (debug > 1) NSLog(@"[self sync:%d] needs %d\n", i, n);
+    if (debug > 1) NSLog(@"[self sync:%ld] needs %ld\n", (long)i, (long)n);
     if ( n > 0 )
         [self fetch:n];
 }
@@ -196,7 +196,7 @@ extern NSInteger debug;
     for (NSInteger i=1; i <= n; i++) {
         id<Token> t = [tokenSource nextToken];
         [t setTokenIndex:[tokens count]];
-        if (debug > 1) NSLog(@"adding %@ at index %d\n", [t text], [tokens count]);
+        if (debug > 1) NSLog(@"adding %@ at index %ld\n", [t text], (long)[tokens count]);
         [tokens addObject:t];
         if ( t.type == TokenTypeEOF )
             break;

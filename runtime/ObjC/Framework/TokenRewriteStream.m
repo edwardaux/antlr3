@@ -641,7 +641,7 @@ extern NSInteger debug;
         [m setObject:op atIndex:op.rwIndex];
     }
     //System.out.println("rwIndex to op: "+m);
-    if (debug > 1) NSLog(@"rwIndex to  op %d\n", (NSInteger)m);
+    if (debug > 1) NSLog(@"rwIndex to  op %ld\n", (long)m);
     return m;
 }
 

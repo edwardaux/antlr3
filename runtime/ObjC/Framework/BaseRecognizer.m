@@ -1030,11 +1030,11 @@ static NSString *NEXT_TOKEN_RULE_NAME;
         return NO;
     }
     if ( aStopIndex == ANTLR_MEMO_RULE_FAILED ) {
-        if (debug) NSLog(@"rule %d will never succeed\n", ruleIndex);
+        if (debug) NSLog(@"rule %ld will never succeed\n", (long)ruleIndex);
         state.failed = YES;
     }
     else {
-        if (debug) NSLog(@"seen rule %d before; skipping ahead to %d failed = %@\n", ruleIndex, aStopIndex+1, state.failed?@"YES":@"NO");
+        if (debug) NSLog(@"seen rule %ld before; skipping ahead to %ld failed = %@\n", (long)ruleIndex, (long)(aStopIndex+1), state.failed?@"YES":@"NO");
         [anInput seek:(aStopIndex+1)]; // jump to one past stop token
     }
     return YES;
@@ -1057,7 +1057,7 @@ static NSString *NEXT_TOKEN_RULE_NAME;
         return;
     }
     if ( ruleIndex >= [aRuleStack length] ) {
-        if (debug) NSLog(@"!!!!!!!!! memo size is %d, but rule index is %d", [state.ruleMemo length], ruleIndex);
+        if (debug) NSLog(@"!!!!!!!!! memo size is %ld, but rule index is %ld", (long)[state.ruleMemo length], (long)ruleIndex);
         return;
     }
     if ( [aRuleStack objectAtIndex:ruleIndex] != nil ) {

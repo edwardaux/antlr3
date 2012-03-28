@@ -97,7 +97,7 @@
 
 - (id) stackTrace:(NSException *)e
 {
-    NSArray *addrs = [e callStackReturnAddresses];
+    //NSArray *addrs = [e callStackReturnAddresses];
     NSArray *trace = [e callStackSymbols];
     
     for (NSString *traceStr in trace) {
@@ -260,7 +260,7 @@
 
 + (id) newException:(NSString *)aReason
 {
-    return [[RuntimeException alloc] initWithName:@"Unsupported Operation Exception" reason:aReason userInfo:nil];
+    return [[UnsupportedOperationException alloc] initWithName:@"Unsupported Operation Exception" reason:aReason userInfo:nil];
 }
 
 - (id) initWithName:(NSString *)aName reason:(NSString *)aReason

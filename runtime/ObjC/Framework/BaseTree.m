@@ -100,7 +100,7 @@ static id<BaseTree> invalidNode = nil;
 - (void) dealloc
 {
 #ifdef DEBUG_DEALLOC
-    NSLog( @"called dealloc in BaseTree %x", (NSInteger)self );
+    NSLog( @"called dealloc in BaseTree %lx", (long)self );
 #endif
 	if ( children ) {
 #ifdef DEBUG_DEALLOC
