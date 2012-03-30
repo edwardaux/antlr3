@@ -101,7 +101,7 @@
 
 - (NSInteger)LA:(NSInteger)anIdx
 {
-    return [[self LT:anIdx] type];
+    return (NSInteger)[[self LT:anIdx] type];
 }
 
 - (id<Token>)objectAtIndex:(NSInteger)anIdx

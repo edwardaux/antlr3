@@ -232,14 +232,14 @@ public Object downup(Object t, boolean showTransformations) {
 - (id) topdown
 // @throws RecognitionException
 {
-    @throw [RecognitionException newException:@"TopDown exception"];
+    @throw [RecognitionException newExceptionWithReason:@"TopDown exception"];
     return nil;
 }
 
 - (id) bottomup
 //@throws RecognitionException
 {
-    @throw [RecognitionException newException:@"BottomUp exception"];
+    @throw [RecognitionException newExceptionWithReason:@"BottomUp exception"];
     return nil;
 }
 

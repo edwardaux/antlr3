@@ -53,12 +53,14 @@
 
 + (id) newException;
 + (id) newException:(id<IntStream>) anInputStream; 
++ (id) newException:(id<IntStream>) anInputStream reason:(NSString *)aReason;
++ (id) newExceptionWithReason:(NSString *) aReason;
 - (id) init;
 - (id) initWithStream:(id<IntStream>)anInputStream;
 - (id) initWithStream:(id<IntStream>)anInputStream reason:(NSString *)aReason;
 - (id) initWithName:(NSString *)aName reason:(NSString *)aReason userInfo:(NSDictionary *)aUserInfo;
 
-- (void) extractInformationFromTreeNodeStream:(id<IntStream>)input;
+- (void) extractInformationFromTreeNodeStream:(id<IntStream>)inputNodes;
 
 - (NSInteger) unexpectedType;
 - (id<Token>)getUnexpectedToken;

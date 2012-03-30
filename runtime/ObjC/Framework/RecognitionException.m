@@ -56,6 +56,11 @@
 	return [[RecognitionException alloc] initWithStream:anInputStream reason:aReason];
 }
 
++ (id) newExceptionWithReason:(NSString *) aReason
+{
+	return [[RecognitionException alloc] initWithName:@"Recognition Exception" reason:aReason];
+}
+
 - (id) init
 {
 	self = [super initWithName:@"Recognition Exception" reason:@"Recognition Exception" userInfo:nil];
@@ -101,15 +106,15 @@
             self.token = [(id<TokenStream>)anInputStream LT:1];
             self.line = [token line];
             self.charPositionInLine = [token charPositionInLine];
-           if ( [input conformsToProtocol:objc_getProtocol("TreeNodeStream")] ) {
+           if ( [input conformsToProtocol:@protocol(TreeNodeStream)] ) {
                [self extractInformationFromTreeNodeStream:anInputStream];
            }
            else if ( [[anInputStream class] instancesRespondToSelector:@selector(LA1:)] ) {
                c = [anInputStream LA:1];
                if ( [[anInputStream class] instancesRespondToSelector:@selector(getLine)] )
-                   line = [anInputStream getLine];
+                   line = (NSUInteger)[anInputStream performSelector:@selector(getLine)];
                if ( [[anInputStream class] instancesRespondToSelector:@selector(getCharPositionInLine)] )
-                   charPositionInLine = [anInputStream getCharPositionInLine];
+								 charPositionInLine = (NSUInteger)[anInputStream performSelector:@selector(getCharPositionInLine)];
            }
            else {
                c = [anInputStream LA:1];
@@ -138,9 +143,9 @@
 	[super dealloc];
 }
 
-- (void) extractInformationFromTreeNodeStream:(id<TreeNodeStream>)input
+- (void) extractInformationFromTreeNodeStream:(id<TreeNodeStream>)inputNodes
 {
-    id<TreeNodeStream> nodes = input;
+    id<TreeNodeStream> nodes = inputNodes;
     node = [nodes LT:1];
     id<TreeAdaptor> adaptor = [nodes getTreeAdaptor];
     id<Token> payload = [adaptor getToken:node];

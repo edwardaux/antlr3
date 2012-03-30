@@ -107,7 +107,7 @@
 
 + (CommonTree *)newTreePattern:(id<Token>)payload
 {
-    return (CommonTree *)[[TreePattern alloc] initWithToken:payload];
+    return [[TreePattern alloc] initWithToken:payload];
 }
 
 - (id) initWithToken:(id<Token>)payload
@@ -115,7 +115,7 @@
     self = [super initWithToken:payload];
     if ( self != nil ) {
     }
-    return (CommonTree *)self;
+    return self;
 }
 
 - (void) dealloc
@@ -452,7 +452,7 @@
     {
         return;
     }
-    MapElement *labels = [Map newMap]; // reused for each _parse
+    Map *labels = [Map newMap]; // reused for each _parse
     int rootTokenType = [tpattern type];
 #pragma warning This is another one of those screwy nested constructs that I have to figure out
 #ifdef DONTUSENOMO

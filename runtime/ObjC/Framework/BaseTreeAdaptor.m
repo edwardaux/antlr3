@@ -35,11 +35,6 @@
 @synthesize treeToUniqueIDMap;
 @synthesize uniqueNodeID;
 
-+ (id<Tree>) newEmptyTree
-{
-    return [[CommonTree alloc] init];
-}
-
 - (id) init
 {
     self = [super init];

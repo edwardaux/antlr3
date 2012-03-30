@@ -128,7 +128,7 @@
 	@throw [NSException exceptionWithName:@"UnsupportedOperationException" reason:@"Streams have no defined size" userInfo:nil];
 }
 
--(id) LT:(NSInteger) k
+-(id<Token>) LT:(NSInteger) k
 {
 	if (k == 0) {
 		return nil;
@@ -143,7 +143,7 @@
 	return [self objectAtIndex:(k - 1)];
 }
 
--(id) LB:(NSInteger) k
+-(id<Token>) LB:(NSInteger) k
 {
 	if (k == 1) {
 		return prevElement;

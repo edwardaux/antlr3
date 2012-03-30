@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ANTLRStringStream.h"
 
-@interface ANTLRReaderStream : ANTLRStringStream {
+@interface ANTLRReaderStream : ANTLRStringStream <NSStreamDelegate> {
     NSInputStream *is;
     NSInteger size;
     NSInteger rbSize;

@@ -31,6 +31,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FastQueue.h"
+#import "Token.h"
 
 #define UNITIALIZED_EOF_ELEMENT_INDEX NSIntegerMax
 
@@ -57,8 +58,8 @@
 - (void) consume;
 - (void) sync:(NSInteger) need;
 - (void) fill:(NSInteger) n;
-- (id) LT:(NSInteger) i;
-- (id) LB:(NSInteger) i;
+- (id<Token>) LT:(NSInteger) i;
+- (id<Token>) LB:(NSInteger) i;
 - (id) getCurrentSymbol;
 - (NSInteger) mark;
 - (void) release:(NSInteger) marker;
