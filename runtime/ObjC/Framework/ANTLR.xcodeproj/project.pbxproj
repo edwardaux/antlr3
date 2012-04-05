@@ -220,6 +220,8 @@
 		BF7D9B701519373700B58218 /* RewriteRuleNodeStream.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7D9B6E1519373600B58218 /* RewriteRuleNodeStream.m */; };
 		BF7D9B731519375200B58218 /* ArrayIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7D9B711519375200B58218 /* ArrayIterator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF7D9B741519375200B58218 /* ArrayIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7D9B721519375200B58218 /* ArrayIterator.m */; };
+		BFEBEE5D152DB44000FADA1C /* ACNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = BFEBEE5B152DB44000FADA1C /* ACNumber.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFEBEE5E152DB44000FADA1C /* ACNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = BFEBEE5C152DB44000FADA1C /* ACNumber.m */; };
 		F7009ADB0A1BE4AE002EDD5D /* LexerRuleReturnScope.h in Headers */ = {isa = PBXBuildFile; fileRef = F7009AD90A1BE4AE002EDD5D /* LexerRuleReturnScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F700E61B0A5F66EC005D0757 /* EarlyExitException.h in Headers */ = {isa = PBXBuildFile; fileRef = F700E6190A5F66EC005D0757 /* EarlyExitException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F700E8FB0A5FAD21005D0757 /* Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = F700E8F90A5FAD21005D0757 /* Parser.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -743,6 +745,8 @@
 		BF7D9B6E1519373600B58218 /* RewriteRuleNodeStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewriteRuleNodeStream.m; sourceTree = "<group>"; };
 		BF7D9B711519375200B58218 /* ArrayIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayIterator.h; sourceTree = "<group>"; };
 		BF7D9B721519375200B58218 /* ArrayIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayIterator.m; sourceTree = "<group>"; };
+		BFEBEE5B152DB44000FADA1C /* ACNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNumber.h; sourceTree = "<group>"; };
+		BFEBEE5C152DB44000FADA1C /* ACNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNumber.m; sourceTree = "<group>"; };
 		F7009AD90A1BE4AE002EDD5D /* LexerRuleReturnScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LexerRuleReturnScope.h; sourceTree = "<group>"; };
 		F7009ADA0A1BE4AE002EDD5D /* LexerRuleReturnScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LexerRuleReturnScope.m; sourceTree = "<group>"; };
 		F700E6190A5F66EC005D0757 /* EarlyExitException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarlyExitException.h; sourceTree = "<group>"; };
@@ -1686,6 +1690,8 @@
 		F7F218EB097AFB0C000472E9 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				BFEBEE5B152DB44000FADA1C /* ACNumber.h */,
+				BFEBEE5C152DB44000FADA1C /* ACNumber.m */,
 				BF7D9B551519367800B58218 /* AMutableArray.h */,
 				BF7D9B561519367800B58218 /* AMutableArray.m */,
 				BF7D9B591519368C00B58218 /* AMutableDictionary.h */,
@@ -1839,6 +1845,7 @@
 				BF7D9B6B1519371200B58218 /* ANTLRReaderStream.h in Headers */,
 				BF7D9B6F1519373700B58218 /* RewriteRuleNodeStream.h in Headers */,
 				BF7D9B731519375200B58218 /* ArrayIterator.h in Headers */,
+				BFEBEE5D152DB44000FADA1C /* ACNumber.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2733,6 +2740,7 @@
 				BF7D9B6C1519371200B58218 /* ANTLRReaderStream.m in Sources */,
 				BF7D9B701519373700B58218 /* RewriteRuleNodeStream.m in Sources */,
 				BF7D9B741519375200B58218 /* ArrayIterator.m in Sources */,
+				BFEBEE5E152DB44000FADA1C /* ACNumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
